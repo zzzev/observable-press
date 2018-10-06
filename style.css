@@ -1,4 +1,4 @@
-/* Observable-Press styles */
+/* Default styles for observable-press */
 html,body {
     padding: 0;
     margin: 0;
@@ -7,13 +7,10 @@ html,body {
 
 body {
     font-family: sans-serif;
-    display: flex;
-    flex-direction: column;
-    align-items: stretch;
-    position: relative;
 }
 
 .loading {
+    background: white;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -43,7 +40,6 @@ header {
     background: #1DA1F2;
     color: white;
     align-items: center;
-    flex-shrink: 0;
 }
 
 header h1 {
@@ -61,9 +57,32 @@ header h1 {
     align-items: center;
 }
 
+[data-cell="viewof randomize"] form {
+    margin: 10px;
+    display: flex;
+    justify-content: center;
+}
+
+[data-cell="viewof randomize"] input {
+    font-size: 1.5em;
+    background: #1DA1F2;
+    color: white;
+    border-radius: 8px;
+    outline: none;
+    border: 3px solid white;
+    box-shadow: 0 0 10px rgba(0,0,0,0.4);
+    padding: 6px 20px;
+}
+
+[data-cell="viewof randomize"] input:hover {
+    box-shadow: 0 0 10px rgba(0,0,0,0.6);
+}
+
+[data-cell="viewof randomize"] input:active {
+    box-shadow: 0 0 10px rgba(0,0,0,0.8);
+}
+
 footer {
-    flex-grow: 1;
-    flex-shrink: 0;
     font-size: 0.8em;
     display: flex;
     align-items: flex-end;
