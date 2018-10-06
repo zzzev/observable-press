@@ -1,0 +1,72 @@
+/* Observable-Press styles */
+html,body {
+    padding: 0;
+    margin: 0;
+    height: 100%;
+}
+
+body {
+    font-family: sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    position: relative;
+}
+
+.loading {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+}
+
+.hidden {
+    display: none;
+}
+
+.error {
+    background: red;
+}
+
+.pending {
+    background: rgba(0,0,0,0.2);
+}
+
+/* TrumpBits specific styles */
+header {
+    padding: 6px 20px;
+    display: flex;
+    background: #1DA1F2;
+    color: white;
+    align-items: center;
+    flex-shrink: 0;
+}
+
+header h1 {
+    flex-grow: 1;
+    margin: 0 20px 0 0;
+}
+
+[data-cell="viewof filter"] input {
+    width: 100%;
+}
+
+[data-cell="tweetView"] {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+footer {
+    flex-grow: 1;
+    flex-shrink: 0;
+    font-size: 0.8em;
+    display: flex;
+    align-items: flex-end;
+    padding: 6px 20px;
+    justify-content: space-evenly;
+}
