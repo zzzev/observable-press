@@ -55,7 +55,6 @@ export default async function bootstrap(notebook) {
   });
   
   try {
-    console.log(`awaiting ${firstRenderPromises.length} cells`);
     await Promise.all(firstRenderPromises);
     // remove first load indicators once all watched nodes have rendered first time
     document.querySelectorAll('.loading').forEach(node => node.remove());
