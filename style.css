@@ -41,7 +41,7 @@ header {
     left: 0;
     right: 0;
     padding: 6px 20px;
-    height: 2em;
+    height: 2.5em;
     display: flex;
     background: #1DA1F2;
     color: white;
@@ -55,12 +55,7 @@ header h1 {
     margin: 0 10px 0 0;
 }
 
-.controls {
-    display: flex;
-    align-items: center;
-}
-
-.controls .help {
+header .help {
     flex-shrink: 0;
     margin-left: 0.5em;
     font-size: 2em;
@@ -73,16 +68,16 @@ header h1 {
     background: rgba(255,255,255,0.2);
 }
 
-.controls .help:hover {
+header .help:hover {
     background: rgba(255,255,255,0.4);
     position: relative
 }
 
-.controls .help [data-cell="lede"] {
+header .help [data-cell="lede"] {
     display: none;
 }
 
-.controls .help:hover [data-cell="lede"] {
+header .help:hover [data-cell="lede"] {
     display: block;
     background: rgba(255,255,255,0.4);
     position: absolute;
