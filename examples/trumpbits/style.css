@@ -1,0 +1,123 @@
+/* TrumpBits specific styles */
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    padding: 6px 20px;
+    height: 2.5em;
+    display: flex;
+    background: #1DA1F2;
+    color: white;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0 0 10px rgba(0,0,0,0.4);
+    border-bottom: 1px solid white;
+}
+
+header h1 {
+    margin: 0 10px 0 0;
+}
+
+header .help {
+    flex-shrink: 0;
+    margin-left: 0.5em;
+    font-size: 2em;
+    line-height: 1em;
+    height: 1em;
+    width: 1em;
+    text-align: center;
+    cursor: pointer;
+    border-radius: 100%;
+    background: rgba(255,255,255,0.2);
+}
+
+header .help:hover {
+    background: rgba(255,255,255,0.4);
+    position: relative
+}
+
+header .help [data-cell="lede"] {
+    display: none;
+}
+
+header .help:hover [data-cell="lede"] {
+    display: block;
+    background: rgba(255,255,255,0.4);
+    position: absolute;
+    top: 2em;
+    right: 0;
+    background: white;
+    border-radius: 8px;
+    color: black;
+    font-size: 0.5em;
+    line-height: 1.2em;
+    min-width: 200px;
+    max-width: 400px;
+    border: 1px solid #1DA1F2;
+    box-shadow: 0 0 10px rgba(0,0,0,0.4);
+    padding: 0.5em 1em;
+    cursor: default;
+}
+
+[data-cell="viewof filter"] input {
+    width: 100%;
+}
+
+[data-cell="tweetView"] {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+[data-cell="tweetView"] a {
+    text-decoration: none;
+}
+
+[data-cell="tweetView"] a:hover {
+    text-decoration: underline;
+}
+
+[data-cell="viewof randomize"] form {
+    margin: 10px;
+    display: flex;
+    justify-content: center;
+}
+
+[data-cell="viewof randomize"] input {
+    font-size: 1.5em;
+    background: #1DA1F2;
+    color: white;
+    border-radius: 8px;
+    outline: none;
+    border: 3px solid white;
+    box-shadow: 0 0 10px rgba(0,0,0,0.4);
+    padding: 6px 20px;
+}
+
+[data-cell="viewof randomize"] input:hover {
+    box-shadow: 0 0 10px rgba(0,0,0,0.6);
+}
+
+[data-cell="viewof randomize"] input:active {
+    box-shadow: 0 0 10px rgba(0,0,0,0.8);
+}
+
+footer {
+    height: 1em;
+    background: rgba(255,255,255,0.8);
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    font-size: 0.8em;
+    display: flex;
+    align-items: flex-end;
+    padding: 6px 20px;
+    justify-content: space-between;
+}
+
+a {
+    color: black;
+    text-decoration: underline;
+}
