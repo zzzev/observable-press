@@ -49,8 +49,8 @@ export default async function bootstrap(notebook) {
   
   try {
     await Promise.all(firstRenderPromises);
-    // remove first load indicators once all watched nodes have rendered first time
     document.querySelectorAll('.loading').forEach(node => node.remove());
+    document.title = `Observable Press Notebook: ${notebookId}`;
   } catch (e) {
     console.error(e);
     showError(`An error occured while loading this notebook. Visit the
