@@ -1,32 +1,25 @@
-import {Runtime} from 'https://unpkg.com/@observablehq/notebook-runtime?module';
+import {Runtime} from 'https://unpkg.com/@observablehq/runtime?module';
 
-/* Usage:
- * ```
- * import notebook from 'https://api.observablehq.com/@zzzev/my-notebook.js';
- * import bootstrap from 'observable-press';
- * bootstrap(notebook);
- * ```
- */
 export default async function bootstrap(notebook) {
   const notebookId = notebook.id;
 
   let firstRenderPromises = [];
 
+  const dataCells = document.querySelectorAll('[data-cell]');
+  // If there are HTML nodes with data-cell attributes, we load cells with the given names
+  // into them.
+  // If there are no such nodes, we load the first cell we find with a content-like name.
+  const hasDefinedCells = dataCells.length !== 0;
+
   Runtime.load(notebook, (cell) => {
-    if (cell.name === 'title') {
-      let promiseParts = getPromiseParts();
-      firstRenderPromises.push(promiseParts.promise);
-      return {
-        fulfilled: (value) => {
-          document.title = value instanceof HTMLElement ? value.innerText : value;
-          promiseParts.resolve(value);
-        },
-        rejected: () => {
-          promiseParts.reject();
-        }
-      }
+    let node;
+    if (hasDefinedCells) {
+      node = document.querySelector(`[data-cell="${cell.name}"]`);
+    } else if (firstRenderPromises.length === 0 && renderableNames.has(cell.name)) {
+      node = document.createElement('div');
+      node.classList.add('content');
+      document.body.appendChild(node);
     }
-    const node = document.querySelector(`[data-cell="${cell.name}"]`);
     if (node) {
       let promiseParts = getPromiseParts();
       firstRenderPromises.push(promiseParts.promise);
@@ -66,6 +59,7 @@ export default async function bootstrap(notebook) {
   }
 }
 
+const renderableNames = new Set(['canvas', 'svg', 'content']);
 
 // Helper functions:
 const getNotebookUrl = (id) => {
