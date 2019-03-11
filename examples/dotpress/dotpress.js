@@ -4,7 +4,7 @@ const notebookPath = location.hash.length > 1
 const notebookUrl = `https://api.observablehq.com/${notebookPath}.js`;
 
 const source = `
-import bootstrap from './../../observable-press.js';
+import bootstrap from './observable-press.js';
 import notebook from '${notebookUrl}';
 bootstrap(notebook);`;
 
