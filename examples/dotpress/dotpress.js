@@ -7,6 +7,7 @@ if (notebookPath[notebookPath.length - 1] === '/') {
 
 const meta = document.createElement('meta');
 meta.setAttribute('data-notebook', notebookPath);
+document.head.appendChild(meta);
 
 const cite = document.createElement('a');
 cite.classList.add('cite');
