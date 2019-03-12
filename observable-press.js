@@ -1,6 +1,10 @@
 import {Runtime} from 'https://unpkg.com/@observablehq/runtime?module';
 
-export default async function bootstrap(notebook) {
+export default async function bootstrap(notebook, loadAll = false) {
+  if (!document.querySelector('title')) {
+    document.title = 'Loading notebook...';
+  }
+
   const notebookId = notebook.id;
 
   let firstRenderPromises = [];
@@ -45,12 +49,15 @@ export default async function bootstrap(notebook) {
         }
       };
     }
+    return loadAll;
   });
   
   try {
     await Promise.all(firstRenderPromises);
     document.querySelectorAll('.loading').forEach(node => node.remove());
-    document.title = `Observable Press Notebook: ${notebookId}`;
+    if (!document.querySelector('title')) {
+      document.title = `Observable Press Notebook: ${notebookId}`;
+    }
   } catch (e) {
     console.error(e);
     showError(`An error occured while loading this notebook. Visit the
@@ -59,7 +66,7 @@ export default async function bootstrap(notebook) {
   }
 }
 
-const renderableNames = new Set(['canvas', 'svg', 'content']);
+const renderableNames = new Set(['canvas', 'svg', 'content', 'chart', 'map']);
 
 // Helper functions:
 const getNotebookUrl = (id) => {

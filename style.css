@@ -21,10 +21,6 @@ body {
     bottom: 0;
 }
 
-.hidden {
-    display: none;
-}
-
 .error {
     background: red;
 }
