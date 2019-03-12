@@ -1,6 +1,9 @@
-const notebookPath = location.hash.length > 1
+let notebookPath = location.hash.length > 1
                         ? location.hash.slice(1)
                         : location.pathname.slice(1);
+if (notebookPath[notebookPath.length - 1] === '/') {
+  notebookPath = notebookPath.slice(0, -1);
+} 
 const notebookUrl = `https://api.observablehq.com/${notebookPath}.js`;
 
 const source = `
