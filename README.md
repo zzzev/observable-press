@@ -14,6 +14,9 @@ The [Observable Runtime](https://github.com/observablehq/runtime) makes this pre
 5. If you need cells which are not displayed to be loaded for their side-effects (as in the Breakout example), add the `data-load-all` attribute to the script tag.
 6. Any cells with the class `loading` will be removed once all referenced cells have rendered at least once
 
+## Examples
+- [Breakout](https://zzzev.github.io/observable-press/examples/breakout/) (based on Jeremy Ashkenas' [example of notebook embedding](http://ashkenas.com/breakout/))
+
 ## Why Are There 3 JS Files?
 - `shimport.js` is included in your HTML file, and checks if your browser supports dynamic imports, bringing in [shimport](https://github.com/Rich-Harris/shimport) if necessary.
 - `bootstrap.js` pulls the notebook id (and optional settings) out of your HTML file, dynamically imports the notebook code from the Observable API, and calls `bootstrap` from...

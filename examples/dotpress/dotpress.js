@@ -3,21 +3,26 @@ let notebookPath = location.hash.length > 1
                         : location.pathname.slice(1);
 if (notebookPath[notebookPath.length - 1] === '/') {
   notebookPath = notebookPath.slice(0, -1);
-} 
-const notebookUrl = `https://api.observablehq.com/${notebookPath}.js`;
+}
 
-const source = `
-import bootstrap from './observable-press.js';
-import notebook from '${notebookUrl}';
-bootstrap(notebook);`;
-
-const script = document.createElement('script');
-script.setAttribute('type', 'module');
-script.innerHTML = source;
-document.body.appendChild(script);
+const meta = document.createElement('meta');
+meta.setAttribute('data-notebook', notebookPath);
 
 const cite = document.createElement('a');
 cite.classList.add('cite');
 cite.innerHTML = 'View source notebook';
 cite.setAttribute('href', `https://observablehq.com/${notebookPath}`);
 document.body.appendChild(cite);
+
+function shimport(src) {
+  try {
+    new Function('import("' + src + '")')();
+  } catch (e) {
+    var s = document.createElement('script');
+    s.src = 'https://unpkg.com/shimport';
+    s.dataset.main = src;
+    document.head.appendChild(s);
+  }
+}
+
+const results = shimport('https://cdn.jsdelivr.net/gh/zzzev/observable-press/src/bootstrap.js');
