@@ -3,7 +3,7 @@ An opinionated way to publish [Observable notebooks](//observablehq.com).
 
 The core idea is to do all your coding in your notebook, write an HTML skeleton for its presentation, and let `observable-press` glue it all together.
 
-The [Observable Runtime](https://github.com/observablehq/runtime) makes this pretty to do with no library, but `observable-press` adds a consistent pattern that allows you to write zero code outside your notebook, and also adds some small conveniences (initial loading indicator, citation back to notebook).
+The [Observable Runtime](https://github.com/observablehq/runtime) makes this pretty easy to do with no library, but `observable-press` adds a consistent pattern that allows you to write zero code outside your notebook, and also adds some small conveniences (initial loading indicator, citation back to notebook).
 
 ## How To
 
@@ -25,7 +25,7 @@ The [Observable Runtime](https://github.com/observablehq/runtime) makes this pre
 ## observablehq.press
 This library powers [observablehq.press](//observablehq.press), which is a simple service that takes a notebook and attempts to render a single cell as large as possible.
 
-For example, check out [this Observable notebook](https://observablehq.com/@zzzev/slit-scan-effect) and then its [presentation on observablehq.press](https://observablehq.press/@zzzev/slit-scan-effect).
+For example, check out [this Observable notebook](https://observablehq.com/@zzzev/slit-scan-effect) and its [presentation on observablehq.press](https://observablehq.press/@zzzev/slit-scan-effect).
 
 You can try it by viewing a notebook on observablehq.com and changing the `.com` to `.press` -- if it doesn't work as you'd expect, please file an issue against this repository with a link to the notebook in question.
 
