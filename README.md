@@ -5,6 +5,8 @@ The core idea is to do all your coding in your notebook, write an HTML skeleton 
 
 The [Observable Runtime](https://github.com/observablehq/runtime) makes this pretty easy to do with no library, but `observable-press` adds a consistent pattern that allows you to write zero code outside your notebook, and also adds some small conveniences (initial loading indicator, citation back to notebook).
 
+This project is not affiliated or endorsed by Observable, Inc.
+
 ## How To
 
 1. Write an Observable notebook with named cells
