@@ -15,42 +15,63 @@ export default async function bootstrap(notebook, loadAll = false) {
   // If there are no such nodes, we load the first cell we find with a content-like name.
   const hasDefinedCells = dataCells.length !== 0;
 
-  Runtime.load(notebook, (cell) => {
-    let node;
-    if (hasDefinedCells) {
-      node = document.querySelector(`[data-cell="${cell.name}"]`);
-    } else if (firstRenderPromises.length === 0 && renderableNames.has(cell.name)) {
-      node = document.createElement('div');
-      node.classList.add('content');
-      document.body.appendChild(node);
-    }
-    if (node) {
-      let promiseParts = getPromiseParts();
-      firstRenderPromises.push(promiseParts.promise);
+  // Find first content-like name
+  const allCellNames = notebook.modules
+      .map(m => m.variables.map(v => v.name))
+      .reduce((a, b) => a.concat(b), []);
+  let contentCellName = allCellNames.find(isRenderableName);
+
+  if (!contentCellName) {
+    // If no content-like name was found, observe all nodes and show the first
+    // one that comes back as a canvas or svg element
+    const firstContentPromiseParts = getPromiseParts();
+    firstRenderPromises.push(firstContentPromiseParts.promise);
+    const contentWrapper = document.createElement('div');
+    contentWrapper.classList.add('content')
+    document.body.appendChild(contentWrapper);
+
+    Runtime.load(notebook, cell => {
+      const promiseParts = getPromiseParts();
+      const node = document.createElement('div');
+      const observer = createNodeObserver(node, promiseParts);
       return {
         pending: () => {
-          node.classList.add('pending');
+          observer.pending();
         },
         fulfilled: (value) => {
-          promiseParts.resolve(value);
-          node.classList.remove('pending');
-          node.innerHTML = '';
-          if (value instanceof Node) {
-            node.appendChild(value);
+          if (value instanceof HTMLCanvasElement || value instanceof SVGElement) {
+            firstContentPromiseParts.resolve();
+            observer.fulfilled(value);
+            contentWrapper.innerHTML = '';
+            contentWrapper.appendChild(node);
           } else {
-            node.innerText = JSON.stringify(value);
+            observer.fulfilled(value);
           }
         },
         rejected: (error) => {
-          promiseParts.reject(error);
-          node.classList.remove('pending');
-          node.classList.add('error');
-          node.innerText = error.message;
+          observer.rejected(error);
         }
       };
-    }
-    return loadAll;
-  });
+    })
+  } else {
+    // There's a known, content-like name, so only observe that cell
+    Runtime.load(notebook, cell => {
+      let node;
+      if (hasDefinedCells) {
+        node = document.querySelector(`[data-cell="${cell.name}"]`);
+      } else if (cell.name === contentCellName) {
+        node = document.createElement('div');
+        node.classList.add('content');
+        document.body.appendChild(node);
+      }
+      if (node) {
+        let promiseParts = getPromiseParts();
+        firstRenderPromises.push(promiseParts.promise);
+        return createNodeObserver(node, promiseParts);
+      }
+      return loadAll;
+    });
+  }
   
   try {
     await Promise.all(firstRenderPromises);
@@ -66,7 +87,30 @@ export default async function bootstrap(notebook, loadAll = false) {
   }
 }
 
+const createNodeObserver = (node, promiseParts) => ({
+  pending: () => {
+    node.classList.add('pending');
+  },
+  fulfilled: (value) => {
+    promiseParts.resolve(value);
+    node.classList.remove('pending');
+    node.innerHTML = '';
+    if (value instanceof Node) {
+      node.appendChild(value);
+    } else {
+      node.innerText = JSON.stringify(value);
+    }
+  },
+  rejected: (error) => {
+    promiseParts.reject(error);
+    node.classList.remove('pending');
+    node.classList.add('error');
+    node.innerText = error.message;
+  }
+})
+
 const renderableNames = new Set(['canvas', 'svg', 'content', 'chart', 'map']);
+const isRenderableName = name => renderableNames.has(name);
 
 // Helper functions:
 const getNotebookUrl = (id) => {

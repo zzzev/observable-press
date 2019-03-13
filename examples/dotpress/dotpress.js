@@ -26,4 +26,4 @@ function shimport(src) {
   }
 }
 
-const results = shimport('https://cdn.jsdelivr.net/gh/zzzev/observable-press/src/bootstrap.js');
+shimport('https://cdn.jsdelivr.net/gh/zzzev/observable-press/src/bootstrap.js');
