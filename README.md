@@ -9,7 +9,7 @@ The [Observable Runtime](https://github.com/observablehq/runtime) makes this pre
 
 1. Write an Observable notebook with named cells
 2. Write an HTML/CSS skeleton for the content
-3. Add `data-cell="cellName"` attributes to HTML tags you'd like to be populated from named cells notebook (note: cells using `viewof` must have the attribute value `viewof cellName`)
+3. Add `data-cell="cellName"` attributes to HTML tags you'd like to be populated from the notebook (note: cells using `viewof` must have the attribute value `"viewof cellName"`)
 4. Add `<script src="https://cdn.jsdelivr.net/gh/zzzev/observable-press/src/shimport.js" data-notebook="@your-observable-username/your-notebook"></script>`
 5. If you need cells which are not displayed to be loaded for their side-effects (as in the Breakout example), add the `data-load-all` attribute to the script tag.
 6. Any cells with the class `loading` will be removed once all referenced cells have rendered at least once
