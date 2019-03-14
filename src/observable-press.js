@@ -60,6 +60,9 @@ export default async function bootstrap(notebook, {loadAll, overrideHeight}) {
     Runtime.load(notebook, stdlib, () => {
       const promiseParts = getPromiseParts();
       const node = document.createElement('div');
+      if (overrideHeight) {
+        node.classList.add('override-height');
+      }
       const observer = createNodeObserver(node, promiseParts);
       return {
         pending: () => {
@@ -87,7 +90,7 @@ export default async function bootstrap(notebook, {loadAll, overrideHeight}) {
       let node;
       if (hasDefinedCells && cell.name) {
         node = document.querySelector(`[data-cell="${cell.name}"]`);
-      } else if (cell.name === contentCellName) {
+      } else if (contentCellName && cell.name === contentCellName) {
         node = document.createElement('div');
         node.classList.add('content');
         if (overrideHeight) {
