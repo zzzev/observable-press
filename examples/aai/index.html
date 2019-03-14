@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>Animated Average Images</title>
+    <link rel="stylesheet" href="../../src/style.css">
+    <style>
+      .support {
+        position: fixed;
+        width: 80%;
+        margin: 0 10%;
+        bottom: 2em;
+        text-align: center;
+        color: white;
+      }
+      .ui {
+        position: fixed;
+        left: 1em;
+        top: 1em;
+        background: rgba(255,255,255,0.5);
+        border-radius: 0.2em;
+      }
+      .ui > div {
+        margin: 1em;
+      }
+      html {
+        height: 100%;
+      }
+      body {
+        background: black;
+        height: 100%;
+      }
+      .loading {
+        position: fixed;
+        width: 100%;
+        top: 40%;
+        height: 1em;
+        color: white;
+        background: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="support" data-cell="supportMessage"></div>
+    <div class="content override-height" data-cell="canvas"></div>
+    <div class="ui">
+        <div data-cell="viewof query"></div>
+        <div data-cell="viewof subreddit"></div>
+    </div>
+    <div class="loading">loading...</div>
+    <script src="../../src/shimport.js" data-notebook="@zzzev/animated-average-images-ii" data-override-height></script>
+  </body>
+</html>

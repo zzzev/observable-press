@@ -15,6 +15,7 @@ The [Observable Runtime](https://github.com/observablehq/runtime) makes this pre
 6. Any cells with the class `loading` will be removed once all referenced cells have rendered at least once
 
 ## Examples
+- [Animated Average Images](https://zzzev.github.io/observable-press/examples/aai/)
 - [Breakout](https://zzzev.github.io/observable-press/examples/breakout/) (based on Jeremy Ashkenas' [example of notebook embedding](http://ashkenas.com/breakout/))
 
 ## Why Are There 3 JS Files?
@@ -36,7 +37,6 @@ If your notebook has special CORS access rules set up (e.g. [this one](https://o
 - Create a bundled/minified version that combines `bootstrap.js`, `observable-press.js`, and inlines the Observable runtime so it's all contained in one download
 - Nicer default loading indicator
 - Better pending/error indication
-- Override named `height` variable in dotpress to make things truly full screen by default
 
 ### Project Goals
 - Declarative
