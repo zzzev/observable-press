@@ -23,7 +23,7 @@ This project is not affiliated or endorsed by Observable, Inc.
 - [Tissot's Indicatrix](https://zzzev.github.io/observable-press/examples/tissots-indicatrix/) ([original notebook](https://observablehq.com/@fil/tissots-indicatrix) by [@fil](https://visionscarto.net/))
 
 ## Why Are There 3 JS Files?
-- `shimport.js` is included in your HTML file, and checks if your browser supports dynamic imports, bringing in [shimport](https://github.com/Rich-Harris/shimport) if necessary.
+- `shimport.js` is included in your HTML file, and checks if your browser supports dynamic imports, bringing in [shimport](https://github.com/Rich-Harris/shimport) if necessary, and then loading...
 - `bootstrap.js` pulls the notebook id (and optional settings) out of your HTML file, dynamically imports the notebook code from the Observable API, and calls `bootstrap` from...
 - `observable-press.js` exports a `bootstrap` function that takes a notebook module from the Observable API and renders it into the page, including the loading logic, etc.
 
