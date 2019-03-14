@@ -1,12 +1,9 @@
 /* Default styles for observable-press */
-html {
+html,body {
     padding: 0;
     margin: 0;
-}
-
-body {
     font-family: sans-serif;
-    margin: 0;
+    height: 100%;
 }
 
 .loading {
@@ -40,4 +37,14 @@ body {
     font-size: 0.8em;
     text-decoration: none;
     border-radius: 1em;
+    z-index: 1;
+}
+
+.content.override-height {
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    z-index: 0;
 }

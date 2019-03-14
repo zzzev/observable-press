@@ -9,6 +9,7 @@ const meta = document.createElement('meta');
 meta.setAttribute('data-notebook', notebookPath);
 document.head.appendChild(meta);
 
+// Create citation link to original notebook
 const cite = document.createElement('a');
 cite.classList.add('cite');
 cite.innerHTML = 'View source notebook';
@@ -26,4 +27,4 @@ function shimport(src) {
   }
 }
 
-shimport('https://cdn.jsdelivr.net/gh/zzzev/observable-press/src/bootstrap.js');
+shimport('../../src/bootstrap.js');
