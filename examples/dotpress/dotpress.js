@@ -27,4 +27,4 @@ function shimport(src) {
   }
 }
 
-shimport('../../src/bootstrap.js');
+shimport('./bootstrap.js');
