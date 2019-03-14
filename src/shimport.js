@@ -9,5 +9,4 @@ function shimport(src) {
   }
 }
 
-// shimport('https://cdn.jsdelivr.net/gh/zzzev/observable-press/src/bootstrap.js');
 shimport('./bootstrap.js');
