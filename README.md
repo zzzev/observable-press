@@ -5,21 +5,41 @@ The core idea is to do all your coding in your notebook, write an HTML skeleton 
 
 The [Observable Runtime](https://github.com/observablehq/runtime) makes this pretty easy to do with no library, but `observable-press` adds a consistent pattern that allows you to write zero code outside your notebook, and also adds some small conveniences (initial loading indicator, new `height` builtin).
 
-This project is not affiliated or endorsed by Observable, Inc.
+### Simplest Example
 
-## How To
+[code](examples/simple/index.html) // [demo](https://zzzev.github.io/observable-press/examples/simple)
 
-1. Write an Observable notebook with named cells
-2. Write an HTML/CSS skeleton for the content, and put the contents of `src` in the same directory (`style.css` is optional)
-3. Add `data-cell="cellName"` attributes to HTML tags you'd like to be populated from the notebook (note: cells using `viewof` must have the attribute value `"viewof cellName"`)
-4. Add `<script src="shimport.js" data-notebook="@your-observable-username/your-notebook"></script>` to your HTML file
-    - If you need cells which are not displayed to be loaded for their side-effects (as in the Breakout example), add the `data-load-all` attribute to the script tag
-    - If you want to expose the window height as a builtin, add the `data-override-height` to the script tag. You can optionally also add the `override-height` class to the content element which you expect to be full height to make it take up the entire window before any content is rendered into it (you must include `style.css` in your HTML file for the latter to work)
-6. Any cells with the class `loading` will be removed once all referenced cells have rendered at least once
+A very simple example looks like this:
+```
+<!DOCTYPE html>
+<html>
+  <link rel="stylesheet" href="style.css">
+  <script src="shimport.js" data-notebook="@zzzev/slit-scan-effect" data-override-height></script>
+</html>
+```
 
-## Examples
-- [Simplest Example](https://zzzev.github.io/observable-press/examples/simple/)
-- [Animated Average Images](https://zzzev.github.io/observable-press/examples/aai/)
+First, we include some simple default styles. These are optional, though you will need some similar styles if you want to have full-window rendering with no margins.
+
+Then, we include the `observable-press` library in a script tag. The `data-notebook` attribute on this tag is used to specify the notebook that should be loaded. 
+
+`data-override-height` is an optional attribute, if present it will delete the named variable `height` from the notebook (which causes it to instead use the builtin provided by `observable-press` which matches window height).
+
+Because there are no HTML nodes in the document with `data-cell` set, the library picks the first "content-like" variable in the notebook and renders it into the body.
+
+### Using `data-cell`s and `.loading`
+
+[code](examples/simple-ui/index.html) // [demo](https://zzzev.github.io/observable-press/examples/simple-ui)
+
+A slightly more complex example has an HTML body like this:
+```
+<div class="ui" data-cell="viewof reverse"></div>
+<div class="override-height" data-cell="canvas"></div>
+<div class="loading">loading...</div>
+```
+
+This includes two tags with `data-cell` attributes, which will be populated by the matching named variables from the notebook. Since there's at least one explicitly specified `data-cell`, it won't pick one automatically. Note that `viewof` must be included in the cell name if you want to render the view of a variable.
+
+This also includes a tag with the class `loading`, which will be automatically removed once the specified `data-cell`s have all rendered at least once. This makes it easy to include a simple loading indicator.
 
 ## Why Are There 3 JS Files?
 - `shimport.js` is included in your HTML file, and checks if your browser supports dynamic imports, bringing in [shimport](https://github.com/Rich-Harris/shimport) if necessary, and then loading...
@@ -28,17 +48,17 @@ This project is not affiliated or endorsed by Observable, Inc.
 
 Yes, this could be improved (see TODOs). 
 
-## Known Issues
-If your notebook has special CORS access rules set up (e.g. [this one](https://observablehq.com/@tezzutezzu/world-history-timeline) that uses Google Sheets), it probably won't work if rehosted on a different domain.
+## Troubleshooting
+If your notebook has special CORS access rules set up, it probably won't work if rehosted on a different domain.
 
 ## TODOs
 - Create a bundled/minified version that combines `bootstrap.js`, `observable-press.js`, and inlines the Observable runtime so it's all contained in one download
 - Nicer default loading indicator
 - Better pending/error indication
 
-### Project Goals
-- Declarative
-- No need to write code outside of notebook
-- Good defaults, minimal config
-- Hide Observable machinery, but cite source
-- Add minimal additional weight
+## Licensing
+`observable-press` is MIT licensed
+
+Notebooks published on Observable without an explicit license are licensed under [the terms described here](https://observablehq.com/terms-of-service), and cannot be freely re-used on a different site unless you are the original author or have permission.
+
+This project is not affiliated or endorsed by Observable, Inc.

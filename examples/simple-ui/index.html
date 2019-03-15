@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="../../src/style.css">
+    <style>
+      .ui {
+        position: fixed;
+        top: 1em;
+        left: 1em;
+        background: rgba(255,255,255,0.4);
+        border-radius:0.2em;
+        padding:1em;
+        z-index: 1;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="loading">loading...</div>
+    <div class="ui" data-cell="viewof reverse"></div>
+    <div class="override-height" data-cell="canvas"></div>
+    <script src="../../src/shimport.js" data-notebook="@zzzev/reversable-zoom" data-override-height></script>
+  </body>
+</html>
