@@ -19,8 +19,6 @@ This project is not affiliated or endorsed by Observable, Inc.
 
 ## Examples
 - [Animated Average Images](https://zzzev.github.io/observable-press/examples/aai/)
-- [Breakout](https://zzzev.github.io/observable-press/examples/breakout/) (based on Jeremy Ashkenas' [example of notebook embedding](http://ashkenas.com/breakout/))
-- [Tissot's Indicatrix](https://zzzev.github.io/observable-press/examples/tissots-indicatrix/) ([original notebook](https://observablehq.com/@fil/tissots-indicatrix) by [@fil](https://visionscarto.net/))
 
 ## Why Are There 3 JS Files?
 - `shimport.js` is included in your HTML file, and checks if your browser supports dynamic imports, bringing in [shimport](https://github.com/Rich-Harris/shimport) if necessary, and then loading...
