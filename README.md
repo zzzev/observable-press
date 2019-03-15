@@ -29,13 +29,6 @@ This project is not affiliated or endorsed by Observable, Inc.
 
 Yes, this could be improved (see TODOs). 
 
-## observablehq.press
-This library powers [observablehq.press](//observablehq.press), which is a simple service that takes a notebook and attempts to render a single cell as large as possible.
-
-For example, check out [this Observable notebook](https://observablehq.com/@zzzev/slit-scan-effect) and its [presentation on observablehq.press](https://observablehq.press/@zzzev/slit-scan-effect).
-
-You can try it by viewing a notebook on observablehq.com and changing the `.com` to `.press` -- if it doesn't work as you'd expect, please file an issue against this repository with a link to the notebook in question.
-
 ## Known Issues
 If your notebook has special CORS access rules set up (e.g. [this one](https://observablehq.com/@tezzutezzu/world-history-timeline) that uses Google Sheets), it probably won't work if rehosted on a different domain.
 
