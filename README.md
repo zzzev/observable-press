@@ -18,6 +18,7 @@ This project is not affiliated or endorsed by Observable, Inc.
 6. Any cells with the class `loading` will be removed once all referenced cells have rendered at least once
 
 ## Examples
+- [Simplest Example](https://zzzev.github.io/observable-press/examples/simple/)
 - [Animated Average Images](https://zzzev.github.io/observable-press/examples/aai/)
 
 ## Why Are There 3 JS Files?

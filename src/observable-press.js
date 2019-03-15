@@ -159,9 +159,9 @@ const getNotebookUrl = id => {
 const getHeightBuiltin = observe => {
   return function() {
     return observe(function(change) {
-      var height = change(document.body.clientHeight);
+      var height = change(window.innerHeight);
       function resized() {
-        var h = document.body.clientHeight;
+        var h = window.innerHeight;
         console.log(h);
         if (h !== height) change(height = h);
       }
