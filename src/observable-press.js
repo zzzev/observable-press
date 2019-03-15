@@ -162,7 +162,6 @@ const getHeightBuiltin = observe => {
       var height = change(window.innerHeight);
       function resized() {
         var h = window.innerHeight;
-        console.log(h);
         if (h !== height) change(height = h);
       }
       window.addEventListener("resize", resized);
