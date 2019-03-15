@@ -13,7 +13,7 @@ A very simple example looks like this:
 ```
 <!DOCTYPE html>
 <html>
-  <link rel="stylesheet" href="../../src/style.css">
+  <link rel="stylesheet" href="style.css">
   <script src="bootstrap.js" data-notebook="@zzzev/slit-scan-effect" data-override-height></script>
 </html>
 ```
