@@ -7,7 +7,7 @@ The [Observable Runtime](https://github.com/observablehq/runtime) makes this pre
 
 ### Simplest Example
 
-[code](examples/simple/index.html) // [demo](https://zzzev.github.io/observable-press/examples/simple)
+[code](examples/simple/index.html) // [demo](https://zzzev.github.io/observable-press/examples/simple) // [source notebook](//observablehq.com/@zzzev/slit-scan-effect)
 
 A very simple example looks like this:
 ```
@@ -28,7 +28,7 @@ Because there are no HTML nodes in the document with `data-cell` set, the librar
 
 ### Using `data-cell`s and `.loading`
 
-[code](examples/simple-ui/index.html) // [demo](https://zzzev.github.io/observable-press/examples/simple-ui)
+[code](examples/simple-ui/index.html) // [demo](https://zzzev.github.io/observable-press/examples/simple-ui) // [source notebook](//observablehq.com/@zzzev/reversable-zoom)
 
 A slightly more complex example has an HTML body like this:
 ```
