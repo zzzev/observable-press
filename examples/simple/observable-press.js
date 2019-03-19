@@ -1,1 +1,1 @@
-../../src/observable-press.js
+../../dist/observable-press.js

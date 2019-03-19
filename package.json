@@ -1,0 +1,25 @@
+{
+  "name": "observable-press",
+  "version": "0.0.1",
+  "description": "An opinionated way to publish [Observable notebooks](//observablehq.com).",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zzzev/observable-press.git"
+  },
+  "scripts": {
+    "build": "webpack"
+  },
+  "author": "zevyoura@gmail.com",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/zzzev/observable-press/issues"
+  },
+  "homepage": "https://github.com/zzzev/observable-press#readme",
+  "devDependencies": {
+    "webpack": "^4.29.6",
+    "webpack-cli": "^3.3.0"
+  },
+  "dependencies": {
+    "@observablehq/runtime": "^3.0.7"
+  }
+}

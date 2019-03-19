@@ -1,4 +1,6 @@
-import {Runtime, Library} from 'https://unpkg.com/@observablehq/runtime?module';
+import {Runtime} from '@observablehq/runtime';
+import {getLibrary} from './library'
+import {getPromiseParts, createNodeObserver} from './util';
 
 // Given an Observable notebook module [notebook], run it, placing
 // all named cells into the HTML tag with the matching data-cell
@@ -12,7 +14,7 @@ import {Runtime, Library} from 'https://unpkg.com/@observablehq/runtime?module';
 // [loadAll] will cause all cells to be observed, even if not rendered.
 // [overrideHeight] will redefine the height variable to be equal to the
 // window height, similar to the way width works in normal notebooks.
-export default async function bootstrap(notebook, {loadAll, overrideHeight}) {
+const initialize = async function initialize(notebook, {loadAll, overrideHeight}) {
   if (!document.querySelector('title')) {
     document.title = 'Loading notebook...';
   }
@@ -33,13 +35,7 @@ export default async function bootstrap(notebook, {loadAll, overrideHeight}) {
       .reduce((a, b) => a.concat(b), []);
   let contentCellName = allCellNames.find(isRenderableName);
 
-  // Use a normal Observable stdlib, but add a new builtin height = window.clientHeight
-  let stdlib = new Library();
-  Object.defineProperty(stdlib, 'height', {
-    value: getHeightBuiltin(stdlib.Generators.observe),
-    writable: true,
-    enumerable: true
-  });
+  const library = getLibrary();
 
   if (overrideHeight && allCellNames.indexOf('height') !== -1) {
     // "undefine" height variable if set, to allow custom builtin to override it
@@ -57,7 +53,7 @@ export default async function bootstrap(notebook, {loadAll, overrideHeight}) {
     contentWrapper.classList.add('content')
     document.body.appendChild(contentWrapper);
 
-    Runtime.load(notebook, stdlib, () => {
+    Runtime.load(notebook, library, () => {
       const promiseParts = getPromiseParts();
       const node = document.createElement('div');
       if (overrideHeight) {
@@ -86,7 +82,7 @@ export default async function bootstrap(notebook, {loadAll, overrideHeight}) {
   } else {
     // We want specific cells (either named in data-cell attr. or
     // a single content cell), so only observe those.
-    Runtime.load(notebook, stdlib, cell => {
+    Runtime.load(notebook, library, cell => {
       let node;
       if (hasDefinedCells && cell.name) {
         node = document.querySelector(`[data-cell="${cell.name}"]`);
@@ -120,64 +116,9 @@ export default async function bootstrap(notebook, {loadAll, overrideHeight}) {
   }
 }
 
-// Common code that returns an observer which will populate the given [node] when
-// fulfilled and also update the passed in [promiseParts]
-const createNodeObserver = (node, promiseParts) => ({
-  pending: () => {
-    node.classList.add('pending');
-  },
-  fulfilled: (value) => {
-    // resolve promise -- note this only has an effect the first time this is called
-    promiseParts.resolve(value);
-    node.classList.remove('pending');
-    node.innerHTML = '';
-    if (value instanceof Node) {
-      node.appendChild(value);
-    } else {
-      node.innerText = JSON.stringify(value);
-    }
-  },
-  rejected: (error) => {
-    promiseParts.reject(error);
-    node.classList.remove('pending');
-    node.classList.add('error');
-    node.innerText = error.message;
-  }
-})
-
 // Names which are considered "content-like" and will be rendered if no
 // data-cell is specified.
 const renderableNames = new Set(['canvas', 'svg', 'content', 'chart', 'map']);
 const isRenderableName = name => renderableNames.has(name);
 
-const getNotebookUrl = id => {
-  const suffix = id[0] === '@' ? id : 'd/' + id.replace(/'@.*'/, '');
-  return `https://beta.observablehq.com/${suffix}`;
-};
-
-// Slightly altered version of observablehq/stdlib/src/width.js
-const getHeightBuiltin = observe => {
-  return function() {
-    return observe(function(change) {
-      var height = change(window.innerHeight);
-      function resized() {
-        var h = window.innerHeight;
-        if (h !== height) change(height = h);
-      }
-      window.addEventListener("resize", resized);
-      return function() {
-        window.removeEventListener("resize", resized);
-      };
-    });
-  }
-}
-
-// A convenience function that returns a promise and its resolve and reject callbacks.
-const getPromiseParts = () => {
-  let parts = {};
-  parts.promise = new Promise((resolve, reject) => {
-    parts.resolve = resolve;
-    parts.reject = reject;
-  });
-  return parts;
-}
+export default initialize;

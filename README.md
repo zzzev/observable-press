@@ -14,7 +14,7 @@ A very simple example looks like this:
 <!DOCTYPE html>
 <html>
   <link rel="stylesheet" href="style.css">
-  <script src="bootstrap.js" data-notebook="@zzzev/slit-scan-effect" data-override-height></script>
+  <script src="observable-press.js" data-notebook="@zzzev/slit-scan-effect" data-override-height></script>
 </html>
 ```
 
@@ -41,17 +41,10 @@ This includes two tags with `data-cell` attributes, which will be populated by t
 
 This also includes a tag with the class `loading`, which will be automatically removed once the specified `data-cell`s have all rendered at least once. This makes it easy to include a simple loading indicator.
 
-## Why Are There 2 JS Files?
-- `bootstrap.js` pulls the notebook id (and optional settings) out of your HTML file, dynamically imports the notebook code from the Observable API via a semi-hacky workaround for dynamic `import()`, and calls `bootstrap` from...
-- `observable-press.js` exports a `bootstrap` function that takes a notebook module from the Observable API and renders it into the page, including the loading logic, etc.
-
-This could probably be improved.
-
 ## Troubleshooting
 If your notebook has special CORS access rules set up, it probably won't work if rehosted on a different domain.
 
 ## TODOs
-- Create a bundled/minified version that minifies `observable-press.js` and its dependencies
 - Nicer default loading indicator
 - Better pending/error indication
 
