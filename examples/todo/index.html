@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="style.css">
+    <style>
+      body {
+        background: #f5f5f5;
+        font: 14px 'Helvetica Neue', Helvetica, Arial, sans-serif;
+        line-height: 1.4em;
+        background: #f5f5f5;
+        color: #4d4d4d;
+      }
+      .wrapper {
+        min-width: 230px;
+        max-width: 550px;
+        margin: auto;
+        display: flex;
+        flex-direction: column;
+        background: white;
+      }
+      .footer {
+        display: flex;
+        padding: 8px;
+        align-items: center;
+        justify-content: space-between;
+        border-top: 1px solid rgba(0,0,0,0.2);
+      }
+      h1 {
+        color: rgba(175, 47, 47, 0.15);
+        font-size: 100px;
+        text-align: center;
+        height: 100px;
+        line-height: 100px;
+        margin: 40px 0;
+      }
+      [data-cell="newTodo"] form {
+        display: flex;
+        flex-direction: row;
+        border-bottom: 2px solid rgba(0,0,0,0.2);
+      }
+      [data-cell="newTodo"] input {
+        font-size: 24px;
+        padding: 16px;
+        border: none;
+        background: none;
+      }
+      [data-cell="newTodo"] input[type="text"] {
+        flex-grow: 1;
+      }
+      [data-cell="newTodo"] input[type="submit"] {
+        flex-grow: 0;
+        flex-shrink: 0;
+        width: 60px;
+        cursor: pointer;
+        color: rgba(0,0,0,0.2);
+      }
+      [data-cell="todoList"] form {
+        display: flex;
+        flex-direction: row;
+        padding: 16px;
+        align-items: center;
+      }
+      [data-cell="todoList"] span {
+        flex-grow: 1;
+        font-size: 24px;
+        line-height: 24px;
+        padding: 0 16px;
+      }
+      [data-cell="todoList"] button {
+        flex-grow: 0;
+        font-size: 24px;
+        line-height: 24px;
+        height: 30px;
+        width: 30px;
+        border-radius: 50%;
+        padding: 0;
+        border: none;
+        background: none;
+        color: #cc9a9a;
+        visibility: hidden;
+      }
+      [data-cell="todoList"] form:hover button {
+        visibility: visible;
+        cursor: pointer;
+      }
+      [data-cell="clearCompleted"] button {
+        background: none;
+        cursor: pointer;
+        border: none;
+      }
+      [data-cell="itemsLeft"] {
+        margin-left: 6px;
+      }
+      [data-cell="clearCompleted"] button[disabled] {
+        visibility: hidden;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="loading">loading...</div>
+    <h1>todos</h1>
+    <div class="wrapper">
+      <div data-cell="newTodo"></div>
+      <div data-cell="todoList"></div>
+      <div class="footer">
+        <div data-cell="itemsLeft"></div>
+        <div data-cell="viewof filter"></div>
+        <div data-cell="clearCompleted"></div>
+      </div>
+    </div>
+    <script src="observable-press.js" data-notebook="d/25c86d9ca402fd89"></script>
+  </body>
+</html>
