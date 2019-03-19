@@ -41,6 +41,17 @@ This includes two tags with `data-cell` attributes, which will be populated by t
 
 This also includes a tag with the class `loading`, which will be automatically removed once the specified `data-cell`s have all rendered at least once. This makes it easy to include a simple loading indicator.
 
+### Other Examples
+#### TODO List
+[code](examples/todo/index.html) // [demo](https://zzzev.github.io/observable-press/examples/todo) // [source notebook](//observablehq.com/@zzzev/todopress)
+
+Based on [TodoMVC](//todomvc.com).
+
+#### Animated Average Images
+[code](examples/aai/index.html) // [demo](https://zzzev.github.io/observable-press/examples/aai) // [source notebook](//observablehq.com/@zzzev/animated-average-images-ii)
+
+Note: the animation in this notebook is somewhat choppy.
+
 ## Troubleshooting
 If your notebook has special CORS access rules set up, it probably won't work if rehosted on a different domain.
 
