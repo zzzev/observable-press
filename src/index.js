@@ -10,7 +10,7 @@ const loadAll = document.querySelector('[data-load-all]') !== null;
 
 const overrideHeight = document.querySelector('[data-override-height]') !== null;
 
-const apiUrl = `https://api.observablehq.com/${notebookId}.js`;
+const apiUrl = `https://api.observablehq.com/${notebookId}.js?v=3`;
 
 // Somewhat hacky workaround for dynamic imports.
 //
