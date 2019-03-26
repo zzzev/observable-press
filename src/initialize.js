@@ -72,10 +72,10 @@ const initialize = async function initialize(notebook, {loadAll, overrideHeight}
     })
   } else {
     // We want specific cells (named in data-cell attr), so only observe those.
-    notebookModule = Runtime.load(notebook, library, cell => {
+    notebookModule = runtime.module(notebook, cellName => {
       let node;
-      if (cell.name) {
-        node = document.querySelector(`[data-cell="${cell.name}"]`);
+      if (cellName) {
+        node = document.querySelector(`[data-cell="${cellName}"]`);
         if (node) {
           let promiseParts = getPromiseParts();
           firstRenderPromises.push(promiseParts.promise);
