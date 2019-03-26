@@ -42,6 +42,11 @@ This includes two tags with `data-cell` attributes, which will be populated by t
 This also includes a tag with the class `loading`, which will be automatically removed once the specified `data-cell`s have all rendered at least once. This makes it easy to include a simple loading indicator.
 
 ### Other Examples
+#### Pantry Nutrition Explorer
+[code](examples/pantry/index.html) // [demo](https://zzzev.github.io/observable-press/examples/pantry) // [source notebook](//observablehq.com/@zzzev/pantry-nutrition-explorer)
+
+Based on [TodoMVC](//todomvc.com).
+
 #### TODO List
 [code](examples/todo/index.html) // [demo](https://zzzev.github.io/observable-press/examples/todo) // [source notebook](//observablehq.com/@zzzev/todopress)
 
