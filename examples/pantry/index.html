@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="style.css">
+    <title>Pantry Nutrition Explorer</title>
+    <style>
+      body {
+        max-width: 1000px;
+        margin: 0 auto;
+      }
+      h1 {
+        text-align: center;
+      }
+      .row {
+        display: flex;
+        flex: row;
+        justify-content: space-between;
+      }
+      h3 {
+        text-align: center;
+        margin: 20px 0 0;
+      }
+      [data-cell="viewof foodGroupFilter"] {
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="loading">loading...</div>
+    <h1>Pantry Nutrition Explorer</h1>
+    <div data-cell="chart"></div>
+    <div class="ui">
+      <div class="row">
+        <div data-cell="viewof yMeasure"></div>
+        <div data-cell="viewof filter"></div>
+        <div data-cell="viewof xMeasure"></div>
+      </div>
+      <h3>Food Groups</h3>
+      <div data-cell="viewof foodGroupFilter"></div>
+    </div>
+    <div data-cell="style"></div>
+    <script src="observable-press.js" data-notebook="@zzzev/pantry-nutrition-explorer" data-load-all></script>
+  </body>
+</html>
