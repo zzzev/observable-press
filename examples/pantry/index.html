@@ -4,25 +4,45 @@
     <meta charset="utf-8">
     <link rel="stylesheet" href="style.css">
     <title>Pantry Nutrition Explorer</title>
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400" rel="stylesheet">
     <style>
       body {
         max-width: 1000px;
         margin: 0 auto;
+        font-family: 'Lato', sans-serif;
       }
-      h1 {
+      h1,h4 {
         text-align: center;
+        font-weight: 300;
+        margin-bottom: 40px;
       }
       .row {
         display: flex;
-        flex: row;
         justify-content: space-between;
+        margin: 30px 0 60px;
       }
       h3 {
         text-align: center;
         margin: 20px 0 0;
+        color: rgba(0,0,0,0.8);
       }
       [data-cell="viewof foodGroupFilter"] {
         text-align: center;
+      }
+      text {
+        /* Use !important ONLY to override inline styles. */
+        font-family: 'Lato', sans-serif !important;
+      }
+      form div {
+        font-family: 'Lato', sans-serif !important;
+        text-align: center;
+        color: rgba(0,0,0,0.8);
+      }
+      h4 {
+        margin-top: 30px;
+      }
+      svg {
+        color: rgba(0,0,0,0.8);
       }
     </style>
   </head>
@@ -40,6 +60,10 @@
       <div data-cell="viewof foodGroupFilter"></div>
     </div>
     <div data-cell="style"></div>
+    <h4>
+      Visualization by <a href="https://zevyoura.com/">Zev Youra</a>,
+      data from <a href="https://ndb.nal.usda.gov/ndb/">USDA National Nutrient Database</a>
+    </h4>
     <script src="observable-press.js" data-notebook="@zzzev/pantry-nutrition-explorer" data-load-all></script>
   </body>
 </html>
