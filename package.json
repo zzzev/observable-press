@@ -20,6 +20,6 @@
     "webpack-cli": "^3.3.0"
   },
   "dependencies": {
-    "@observablehq/runtime": "^3.0.7"
+    "@observablehq/runtime": "^4.4.4"
   }
 }
